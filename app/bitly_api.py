@@ -25,18 +25,20 @@ def average_clicks(country_data):
         sum(country_data)/len(country_data))
 
 
-def average_clicks_per_country(access_token, links=None):
+def scrape_data_from_api(access_token):
     countries = defaultdict(list)
     for link in group_info(access_token)['links']:
         bitlink = link['id']
         DATA_BY_COUNTRY = f'{BASE_URL}/bitlinks/{bitlink}/countries?units=30'
         response = requests.get(DATA_BY_COUNTRY, headers=headers(access_token))
-        
         for country_data in response.json()['metrics']:
             countries[country_data['value']].append(country_data['clicks'])
-    
+    return countries
+
+
+def average_clicks_per_country(access_token, links=None):
+    countries = scrape_data_from_api(access_token)
     avg_clicks_per_country = create_avg_click_list(countries)
-    
     return {'facet':'countries', 'metrics':avg_clicks_per_country}
 
 
