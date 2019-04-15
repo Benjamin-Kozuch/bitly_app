@@ -15,8 +15,8 @@ bitly_app:latest
 
 LOCALHOST
 ```
-localhost:5000/avg_clicks_per_country
-localhost:5000avg_clicks_per_country/<your-access-token>
+localhost/avg_clicks_per_country
+localhost/avg_clicks_per_country/<your-access-token>
 ```
 if you leave out `your-access-token` then the app will use the access-token stored in an environment variable (mine)
 
