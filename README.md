@@ -14,9 +14,9 @@ bitly_app:latest
 ## Endpoints
 
 LOCALHOST
-````
-localhost:5000/avg_clicks_per_country
-localhost:5000avg_clicks_per_country/<your-access-token>
+```
+localhost/avg_clicks_per_country
+localhost/avg_clicks_per_country/<your-access-token>
 ```
 if you leave out `your-access-token` then the app will use the access-token stored in an environment variable (mine)
 
@@ -37,22 +37,20 @@ For example:
 
 Lets say we have US, Canada and UK as our 3 countries. And me have 2 Bitlinks (bitlink A and bitlink B).
 
-    Bitlink A | Bitlink B
+COUNTRY | Bitlink A | Bitlink B
+--- | --- | --- 
+US  |  4  |  8
+CA  |  1  |  5
+UK  |  0  |  10
 
-US     4      |     8
-
-CA     1      |     5
-
-UK     0      |     10
-
-
+```
 US -> (4+8) / (total bitlinks clicked) -> (4+8)/2 = 6
 CA -> (1+5) / (total bitlinks clicked) -> (1+5)/2 = 3
 UK -> (10) / (total bitlinks clicked) -> (10)/1 = 10
-
+```
 
 Our API should return:
-
+```
 .
 .
 .
@@ -72,7 +70,7 @@ Our API should return:
 .
 .
 ],
-
+```
 
 In the case of UK above, I wasn't sure whether the calculation should be
 
@@ -94,7 +92,7 @@ So my approach is going to be to keep a dictionary of the running sums of all th
 
 So after looping through all my bitlinks and getting the clicks per country of each bitlink I should have a dict that looks like this:
 
-
+```
 "CA": [
     1,
     5
@@ -106,9 +104,11 @@ So after looping through all my bitlinks and getting the clicks per country of e
     4,
     8
 ]
+```
 
 After that, its just a matter of summing up all the clicks in each list and dividing by the total elements in that list to end up with something like this:
 
+```
 "metrics": [
     {
     "average_clicks": 6,
@@ -123,6 +123,7 @@ After that, its just a matter of summing up all the clicks in each list and divi
     "value": "CA"
     }
 ]
+```
 
 For my own exploratory purposes I used https://www.tunnelbear.com/ to 'fake' clicking on bitlinks from different countries.
 
