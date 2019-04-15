@@ -128,3 +128,11 @@ After that, its just a matter of summing up all the clicks in each list and divi
 For my own exploratory purposes I used https://www.tunnelbear.com/ to 'fake' clicking on bitlinks from different countries.
 
 
+## Run test.py
+
+```
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python tests.py
+```
