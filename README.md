@@ -14,7 +14,7 @@ bitly_app:latest
 ## Endpoints
 
 LOCALHOST
-````
+```
 localhost:5000/avg_clicks_per_country
 localhost:5000avg_clicks_per_country/<your-access-token>
 ```
